@@ -1,20 +1,22 @@
-import { Equal, Expect } from "./helpers/type-utils";
+import { Equal, Expect } from './helpers/type-utils'
+
+type AddListenerArg = (state: boolean) => void
 
 /**
  * How do we type onFocusChange?
  */
-const addListener = (onFocusChange: unknown) => {
-  window.addEventListener("focus", () => {
-    onFocusChange(true);
-  });
+const addListener = (onFocusChange: AddListenerArg) => {
+  window.addEventListener('focus', () => {
+    onFocusChange(true)
+  })
 
-  window.addEventListener("blur", () => {
-    onFocusChange(false);
-  });
-};
+  window.addEventListener('blur', () => {
+    onFocusChange(false)
+  })
+}
 
-addListener((isFocused) => {
-  console.log({ isFocused });
+addListener(isFocused => {
+  console.log({ isFocused })
 
-  type tests = [Expect<Equal<typeof isFocused, boolean>>];
-});
+  type tests = [Expect<Equal<typeof isFocused, boolean>>]
+})
